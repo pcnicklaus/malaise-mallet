@@ -6,3 +6,5 @@ export const CLEAR_LIKED_JOBS = 'clear_liked_jobs';
 
 export const FETCH_IDEAS = 'fetch_ideas';
 export const LIKE_IDEA = 'like_idea';
+
+export const ACTIVE_IDEA = 'active_idea';

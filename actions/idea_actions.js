@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import {
   FETCH_IDEAS,
-  LIKE_IDEA
+  LIKE_IDEA,
+  ACTIVE_IDEA
 } from './types';
 
 export const fetchIdeas = () => async (dispatch) => {
@@ -23,6 +24,13 @@ export const likeIdea = (idea) => {
     type: LIKE_IDEA
   };
 };
+
+export const activeIdea = (idea) => {
+  return {
+    type: ACTIVE_IDEA,
+    payload: idea
+  }
+}
 
 
 // export const clearLikedJobs = () => {

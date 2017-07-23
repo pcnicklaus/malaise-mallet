@@ -7,8 +7,8 @@ import Slides from '../components/Slides';
 import { fetchIdeas } from '../actions';
 
 const SLIDE_DATA = [
-  { text: 'Welcome to Malaise Mallet', color: '#03A9F4' },
-  { text: 'Helping people kick apathy in the face!', color: '#009688' },
+  // { text: 'Welcome to Malaise Mallet', color: '#03A9F4' },
+  // { text: 'Helping people kick apathy in the face!', color: '#009688' },
   { text: 'Ready to give it a shot?', color: '#03A9F4' }
 ];
 

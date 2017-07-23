@@ -3,6 +3,8 @@ import { View, Text, Platform, ScrollView, Linking } from 'react-native';
 import { Button, Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
+import { activeIdea } from '../actions';
+
 
 class ReviewScreen extends Component {
   static navigationOptions = {
@@ -40,8 +42,9 @@ class ReviewScreen extends Component {
               title="screw off?!"
               backgroundColor="#03A9F4"
               onPress={() => {
-                console.log('this.props.navigation', this.props.navigation);
-                this.props.navigation.navigate('detail', { id: _id } )
+                this.props.activeIdea(idea);
+
+                this.props.navigation.navigate('detail')
                 }
               }
             />
@@ -81,7 +84,7 @@ function mapStateToProps(state) {
   return { likedIdeas: state.likedIdeas };
 }
 
-export default connect(mapStateToProps)(ReviewScreen);
+export default connect(mapStateToProps, { activeIdea })(ReviewScreen);
 
 //
 // header: ({ navigate }) => {

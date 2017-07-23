@@ -3,15 +3,13 @@ const Schema = mongoose.Schema;
 
 const ReviewSchema = new Schema({
   idea_id: String,
-  user_id: String,
+  name: String,
   title: String,
   body: String,
-  recommendation: String,
+  recommendations: String,
   gotchas: String,
-  rating: String,
-  time_spent: String,
-  day_completed: String,
-  materials_used: String
+  willDoAgain: String,
+  recommended: String
 })
 
 const Review = mongoose.model('review', ReviewSchema);

@@ -33,11 +33,11 @@ const doFacebookLogin = async dispatch => {
   }
 
   if (type === 'success') {
-    const newR = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-    // console.log('new R',newR)
+    const nextRequest = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+
     Alert.alert(
       'Logged in!',
-      `Hi ${(await newR.json()).name}!`,
+      `Hi ${(await nextRequest.json()).name}!`,
     );
     await AsyncStorage.setItem('fb_token', token);
     dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });

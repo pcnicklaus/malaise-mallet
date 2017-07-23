@@ -12,6 +12,7 @@ import DetailScreen from './screens/DetailScreen';
 import DeckScreen from './screens/DeckScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ReviewScreen from './screens/ReviewScreen';
+import ReviewForm from './screens/ReviewForm';
 
 class App extends React.Component {
   componentDidMount() {
@@ -39,16 +40,15 @@ class App extends React.Component {
         screen: TabNavigator({
           deck: { screen: DeckScreen },
           review: { screen: ReviewNav },
-          settings: { screen: SettingsScreen },
         },
         {
-          tabBarPosition: 'bottom',
-          tabBarOptions: {
-            labelStyle: { fontSize: 12 }
+          navigationOptions: {
+            tabBar: { visible: false }
           }
         })
       }
-    }, {
+    },
+    {
       navigationOptions: {
         tabBar: { visible: false }
       },
@@ -65,10 +65,17 @@ class App extends React.Component {
 
 
 const ReviewNav = TabNavigator({
-  review: { screen: ReviewScreen },
-  detail: { screen: DetailScreen },
-  settings: { screen: SettingsScreen },
-})
+    review: { screen: ReviewScreen },
+    detail: { screen: DetailScreen },
+    settings: { screen: SettingsScreen },
+    reviewForm: { screen: ReviewForm }
+  },
+  {
+    navigationOptions: {
+      tabBar: { visible: false }
+    }
+  }
+)
 
 
 const styles = StyleSheet.create({

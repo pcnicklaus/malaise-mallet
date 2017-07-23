@@ -109,20 +109,29 @@ module.exports = (app) => {
   // do then need callbacks or is mongoose returning promises finally?
 
   app.post('/idea/:id/review', async function(req, res, next) {
-    const review = req.body;
-    const ideaID = req.params('id');
 
+    console.log('req.body \n', req.body, 'req.params\n', req.params)
+    const review = req.body.value;
+    const ideaID = req.params.id;
+    review.idea_id = ideaID
+
+    console.log("variables", review, '\n', ideaID)
     // create the review
     const newReview = new Review(review);
-    newReview.ideaID = ideaID;
+    newReview.save();
+    console.log('\n new review\n', newReview)
 
-    const foundIdea = Idea.findById(idea);
-    foundIdea.reviews.push(newReview);
-    foundIdea.save();
+    Idea.findById(ideaID).then((foundIdea) => {
+      foundIdea.reviews.push(newReview);
+      foundIdea.save();
+      console.log('\n foundIdea \n', foundIdea);
+      res.send(newReview)
+    });
+
 
     // do i even need to save the review like this? it's in the idea reviews array so....
-    newReview.save().then((result) => {
-    })
+    // newReview.save().then((result) => {
+    // })
     // what are you doing in here? will this work???
     // const Idea = await Idea.findById(ideaID, (idea, err) => {
     //   // do you return idea here? or can you just set it equal to the result of findbyid....
