@@ -8,8 +8,9 @@ const IdeaSchema = new Schema({
   best_time: String,
   time_needed: String,
   requirements: String,
-  reviews: [ String ]
-})
+  reviews: [ String ],
+  imageURL: String,
+});
 
 const Idea = mongoose.model('idea', IdeaSchema);
 

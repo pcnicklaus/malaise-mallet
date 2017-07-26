@@ -11,7 +11,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import DetailScreen from './screens/DetailScreen';
 import DeckScreen from './screens/DeckScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import ReviewScreen from './screens/ReviewScreen';
+import MalletsScreen from './screens/MalletsScreen';
 import ReviewForm from './screens/ReviewForm';
 
 class App extends React.Component {
@@ -39,14 +39,12 @@ class App extends React.Component {
       main: {
         screen: TabNavigator({
           deck: { screen: DeckScreen },
-          review: { screen: ReviewNav },
-        },
-        {
-          navigationOptions: {
-            tabBar: { visible: false }
-          }
+          mallets: { screen: MalletsScreen },
+          settings: { screen: SettingsScreen },
         })
-      }
+      },
+      detail: { screen: DetailScreen },
+      review: { screen: ReviewForm },
     },
     {
       navigationOptions: {
@@ -65,7 +63,6 @@ class App extends React.Component {
 
 
 const ReviewNav = TabNavigator({
-    review: { screen: ReviewScreen },
     detail: { screen: DetailScreen },
     settings: { screen: SettingsScreen },
     reviewForm: { screen: ReviewForm }

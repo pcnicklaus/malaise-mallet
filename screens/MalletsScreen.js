@@ -6,7 +6,7 @@ import { MapView } from 'expo';
 import { activeIdea } from '../actions';
 
 
-class ReviewScreen extends Component {
+class MalletsScreen extends Component {
   static navigationOptions = {
     title: 'Review Ideas',
     tabBar: {
@@ -84,7 +84,7 @@ function mapStateToProps(state) {
   return { likedIdeas: state.likedIdeas };
 }
 
-export default connect(mapStateToProps, { activeIdea })(ReviewScreen);
+export default connect(mapStateToProps, { activeIdea })(MalletsScreen);
 
 //
 // header: ({ navigate }) => {

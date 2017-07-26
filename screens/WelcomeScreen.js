@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { View, Text, AsyncStorage } from 'react-native';
 import { AppLoading } from 'expo';
 import Slides from '../components/Slides';
-import { fetchIdeas } from '../actions';
+import * as actions from '../actions';
 
 const SLIDE_DATA = [
   // { text: 'Welcome to Malaise Mallet', color: '#03A9F4' },
@@ -17,10 +17,9 @@ class WelcomeScreen extends Component {
 
 
   async componentWillMount() {
-    let token = await AsyncStorage.removeItem('fb_token');
-
+    let token = await AsyncStorage.getItem('fb_token');
     if (token) {
-      this.props.navigation.navigate('map');
+      this.props.navigation.navigate('deck');
       this.setState({ token });
     } else {
       this.setState({ token: false });
@@ -28,9 +27,7 @@ class WelcomeScreen extends Component {
   }
 
   onSlidesComplete = () => {
-    // this.props.fetchIdeas(() => {
-      this.props.navigation.navigate('deck');
-    // });
+    this.props.navigation.navigate('deck');
   }
 
   render() {
@@ -44,4 +41,4 @@ class WelcomeScreen extends Component {
   }
 }
 
-export default connect(null, { fetchIdeas })(WelcomeScreen);
+export default connect(null, actions)(WelcomeScreen);

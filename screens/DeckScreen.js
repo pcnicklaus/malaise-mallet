@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, Image, Dimensions } from 'react-native';
+import { View, Text, Platform, Image, Dimensions, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
 import { Card, Button, Icon } from 'react-native-elements';
 import Swipe from '../components/Swipe';
 import { fetchIdeas, likeIdea } from '../actions';
+import TextStyles from '../fonts';
 
 class DeckScreen extends Component {
   static navigationOptions = {
@@ -16,38 +17,28 @@ class DeckScreen extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.fetchIdeas();
+  async componentWillMount() {
+    await this.props.fetchIdeas();
   }
 
   renderCard(idea) {
     return (
-      <Card title={idea.title}>
+      <Card>
         <View
-          style={{ height: 300 }}
           scrollEnabled={false}
           cacheEnabled={Platform.OS === 'android' ? true : false}
         >
           <Image
             style={ styles.image }
-            source={require('../assets/images/image-test.jpg')}
+            source={{ uri: idea.imageURL }}
           />
         </View>
 
-        <View style={styles.detailWrapper}>
-          <Text>{idea.description}</Text>
+        <View>
+          <Text style={ styles.title3 }>{ idea.title }</Text>
+          <Text style={ styles.body }>{ idea.description }</Text>
         </View>
-        <View style={styles.detailWrapper}>
-          <Text>{idea.time_needed}</Text>
-          <Text>{idea.best_time}</Text>
-          <Text>{idea.best_location}</Text>
-        </View>
-        <View style={styles.detailWrapper}>
-          <Text>{idea.time_needed}</Text>
-        </View>
-        <Text>
-          {idea.requirements.replace(/<b>/g, '').replace(/<\/b/g, '')}
-        </Text>
+
       </Card>
     );
   }
@@ -60,7 +51,7 @@ class DeckScreen extends Component {
           large
           icon={{ name: 'my-location' }}
           backgroundColor="#03A9F4"
-          onPress={() => this.props.navigation.navigate('review')}
+          onPress={() => this.props.navigation.navigate('mallets')}
         />
       </Card>
     );
@@ -82,6 +73,8 @@ class DeckScreen extends Component {
 }
 
 const SCREEN_WIDTH = (Dimensions.get('window').width) - 60;
+const SCREEN_HEIGHT = (Dimensions.get('window').height) - 80;
+
 
 const styles = {
   detailWrapper: {
@@ -91,8 +84,39 @@ const styles = {
   },
   image: {
     width: SCREEN_WIDTH,
-    height: 200
-  }
+    height: (SCREEN_HEIGHT / 5) * 3
+  },
+  title2: {
+    fontSize: 22,
+    fontWeight: '400',
+    lineHeight: 28,
+    letterSpacing: 0.352
+  },
+  headline: {
+    fontSize: 17,
+    fontWeight: '600',
+    lineHeight: 22,
+    letterSpacing: -0.408
+  },
+  body: {
+    fontSize: 17,
+    fontWeight: '400',
+    lineHeight: 22,
+    letterSpacing: -0.408
+  },
+  subhead: {
+    fontSize: 15,
+    fontWeight: '400',
+    lineHeight: 20,
+    letterSpacing: -0.24
+  },
+  title3: {
+    fontSize: 20,
+    fontWeight: '400',
+    lineHeight: 24,
+    letterSpacing: 0.38
+  },
+
 
 };
 

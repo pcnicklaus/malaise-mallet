@@ -23,7 +23,7 @@ class DetailScreen extends Component {
           title="review it"
           backgroundColor="#f27c15"
           onPress={ () => {
-            this.props.navigation.navigate('reviewForm')
+            this.props.navigation.navigate('review')
           }}
         />
       </View>
