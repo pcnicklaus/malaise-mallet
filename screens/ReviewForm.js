@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, TouchableHighlight, Alert } from 'react-native';
+import axios from 'axios';
+import { View, Text, StyleSheet, TouchableHighlight, Alert, Button } from 'react-native';
+import BackButton from '../components/BackButton.js';
+import Styles from '../styles';
 
+// form and validation handled by...
 import t from 'tcomb-form-native';
 const Form = t.form.Form;
-
-// import t as tValid from 'tcomb-validation';
 const validate = t.validate;
+
 
 class ReviewForm extends Component {
 
   state = { value: {} }
 
-  yesNoMaybe = t.enums({
-    Y: 'Yes',
-    N: 'No',
-    M: 'Maybe'
-  });
+  yesNoMaybe = t.enums({ Y: 'Yes', N: 'No', M: 'Maybe'});
 
   Review = t.struct({
     name: t.String,
@@ -29,18 +27,11 @@ class ReviewForm extends Component {
     recommended: t.maybe(this.yesNoMaybe)
   });
 
-  onChange = (value) => {
-    this.setState({ value });
-  }
-
-  clearForm = () => {
-    this.setState({ value: null });
-  }
+  onChange = (value) => { this.setState({ value }); }
+  clearForm = () => { this.setState({ value: null }); }
 
   handleSubmit = (result) => {
-    console.log('herer', result)
     const id = this.props.idea._id;
-    console.log('id', id)
     axios.post(`http://localhost:3050/idea/${id}/review`, result)
       .then((review) => {
         this.clearForm();
@@ -61,18 +52,13 @@ class ReviewForm extends Component {
   }
 
   onPress = () => {
-
-    var value = this.refs.form.getValue();
-    const result = validate(value, this.Review)
+    let value = this.refs.form.getValue();
+    let result = validate(value, this.Review)
 
     if (result.isValid()) {
-
       this.handleSubmit(result)
-    }
-    else {
-
+    } else {
       const text = result.firstError().message;
-
       Alert.alert(
         'There was a problem...\n',
         text,
@@ -81,59 +67,28 @@ class ReviewForm extends Component {
     }
   }
 
-  formOptions = {
-    auto: 'placeholders',
-    label: 'My struct label'
-  };
-
   render() {
+    const { navigation } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={Styles.container}>
+        <BackButton navigation={navigation} destination={'detail'}/>
+        <Text style={Styles.title}>{this.props.idea.title}</Text>
+        <Text style={Styles.subhead}>Review away! And be straight with us :)</Text>
+
         <Form
           ref="form"
           type={this.Review}
-          options={this.formOptions}
+          options={{ auto: 'placeholders' }}
           value={this.state.value}
           onChange={ this.onChange }
         />
-        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Save</Text>
+        <TouchableHighlight style={Styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
+          <Text style={Styles.buttonText}>Save</Text>
         </TouchableHighlight>
       </View>
     );
   }
-
-
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    fontSize: 30,
-    alignSelf: 'center',
-    marginBottom: 30
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
 
 function mapStateToProps(state) {
   return {
@@ -142,3 +97,17 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(ReviewForm)
+
+
+
+
+
+
+  // onBackPress = () => {
+  //   this.props.navigation.navigate('detail');
+  // }
+  // <TouchableHighlight onPress={this.onBackPress}>
+  //   <Text style={Styles.backButton}>
+  //      back
+  //   </Text>
+  // </TouchableHighlight>

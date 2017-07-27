@@ -6,6 +6,8 @@ import { AppLoading } from 'expo';
 import Slides from '../components/Slides';
 import * as actions from '../actions';
 
+import Styles from '../styles';
+
 const SLIDE_DATA = [
   // { text: 'Welcome to Malaise Mallet', color: '#03A9F4' },
   // { text: 'Helping people kick apathy in the face!', color: '#009688' },
@@ -14,7 +16,6 @@ const SLIDE_DATA = [
 
 class WelcomeScreen extends Component {
   state = { token: null }
-
 
   async componentWillMount() {
     let token = await AsyncStorage.getItem('fb_token');

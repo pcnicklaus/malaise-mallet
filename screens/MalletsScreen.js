@@ -19,7 +19,6 @@ class MalletsScreen extends Component {
 
   renderLikedIdeas() {
     // console.log('this.props', this.props);
-    // if(!this.props.likedIdeas) { return; }
 
     return this.props.likedIdeas.map(idea => {
       // console.log('idea in review screen', idea)
@@ -55,12 +54,23 @@ class MalletsScreen extends Component {
   }
 
   render() {
+    if(this.props.likedIdeas.length == 0) {
+      return(
+        <View>
+          <Text>you aint got no ideas to review yo!</Text>
+          <Text>you aint got no ideas to review yo!</Text>
+          <Text>you aint got no ideas to review yo!</Text>
+          <Text>you aint got no ideas to review yo!</Text>
+          <Text>you aint got no ideas to review yo!</Text>
+        </View>
+      )
+
+    }
 
     // console.log('this props review screen', this.props)
     // console.log('this state review screen', this.state)
     return (
       <ScrollView>
-        <Text>am i working at all?</Text>
         {this.renderLikedIdeas()}
       </ScrollView>
     );

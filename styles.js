@@ -1,6 +1,13 @@
-import React, { Stylesheet } from 'react-native';
+import React, { StyleSheet } from 'react-native';
 
-export const textStyles = {
+export default StyleSheet.create({
+  //reviewform
+  container: {
+    justifyContent: 'center',
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: '#ffffff',
+  },
   title1: {
     fontSize: 28,
     fontWeight: '300',
@@ -60,4 +67,36 @@ export const textStyles = {
     lineHeight: 16,
     letterSpacing: 0.066
   },
-};
+  //reviewform
+  button: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  //review form
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  // needs to be put into the component
+  backButton: {
+    height: 30,
+    width: 60,
+    // backgroundColor: '#48BBEC',
+    // borderColor: '#48BBEC',
+    // borderWidth: 1,
+    // borderRadius: 8,
+    // marginBottom: 2,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    margin: 10,
+    fontSize: 15,
+    textAlign: 'left'
+  }
+});

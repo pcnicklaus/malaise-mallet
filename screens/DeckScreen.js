@@ -5,7 +5,7 @@ import { MapView } from 'expo';
 import { Card, Button, Icon } from 'react-native-elements';
 import Swipe from '../components/Swipe';
 import { fetchIdeas, likeIdea } from '../actions';
-import TextStyles from '../fonts';
+import Styles from '../styles';
 
 class DeckScreen extends Component {
   static navigationOptions = {
