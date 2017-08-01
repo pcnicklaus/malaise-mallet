@@ -11,6 +11,8 @@ circumstances: t.String,
 willDoAgain: t.Number,
 recommended: t.Boolean
 
+BackButton
+- arrow next to it
 
 card view
 - text spacing / layout / font
@@ -36,6 +38,10 @@ user management stuff...
 - how do we identify them from the token...
 - fetch user...
 https://github.com/react-community/react-navigation/issues/464
+
+user id / info on
+- mallet form
+- review form
 
 
 react - nav - hidden items

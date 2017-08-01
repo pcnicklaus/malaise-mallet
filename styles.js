@@ -1,13 +1,23 @@
 import React, { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native'
+
+const SCREEN_WIDTH = (Dimensions.get('window').width) - 60;
+const SCREEN_HEIGHT = (Dimensions.get('window').height) - 80;
+
 
 export default StyleSheet.create({
-  //reviewform
   container: {
-    justifyContent: 'center',
-    marginTop: 10,
     padding: 10,
-    backgroundColor: '#ffffff',
+    marginTop: 20
   },
+  image: {
+    width: SCREEN_WIDTH,
+    height: (SCREEN_HEIGHT / 5) * 3,
+    alignSelf: 'center'
+  },
+
+
+  //FONTS
   title1: {
     fontSize: 28,
     fontWeight: '300',
@@ -67,7 +77,12 @@ export default StyleSheet.create({
     lineHeight: 16,
     letterSpacing: 0.066
   },
+
   //reviewform
+  reviewContainer: {
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+  },
   button: {
     height: 36,
     backgroundColor: '#48BBEC',
@@ -78,25 +93,14 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
-  //review form
   buttonText: {
     fontSize: 18,
     color: 'white',
     alignSelf: 'center'
   },
-  // needs to be put into the component
-  backButton: {
-    height: 30,
-    width: 60,
-    // backgroundColor: '#48BBEC',
-    // borderColor: '#48BBEC',
-    // borderWidth: 1,
-    // borderRadius: 8,
-    // marginBottom: 2,
-    justifyContent: 'center',
-    flexDirection: 'column',
-    margin: 10,
-    fontSize: 15,
-    textAlign: 'left'
-  }
+
+
+
+
+
 });

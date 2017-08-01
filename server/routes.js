@@ -74,8 +74,10 @@ module.exports = (app) => {
   // could you set result of Idea find to a variable. use async await.
   // move on to the next step if !idea...
   app.post('/idea', async function(req, res, next) {
-    const query = { title: req.body.title };
-    const update = new Idea(req.body);
+    console.log('req body \n', req.body)
+    const values = req.body.value
+    const query = { title: values.title };
+    const update = new Idea(values);
     const options = { new: true, upsert: true }
     const callback = (error, result) => {
       if (error) { console.log('error why', error); res.send(error) }

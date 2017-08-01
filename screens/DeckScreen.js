@@ -3,8 +3,11 @@ import { View, Text, Platform, Image, Dimensions, ActivityIndicator } from 'reac
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
 import { Card, Button, Icon } from 'react-native-elements';
+
 import Swipe from '../components/Swipe';
+
 import { fetchIdeas, likeIdea } from '../actions';
+
 import Styles from '../styles';
 
 class DeckScreen extends Component {
@@ -23,7 +26,7 @@ class DeckScreen extends Component {
 
   renderCard(idea) {
     return (
-      <Card>
+      <Card style={{height: SCREEN_HEIGHT}}>
         <View
           scrollEnabled={false}
           cacheEnabled={Platform.OS === 'android' ? true : false}
@@ -32,12 +35,12 @@ class DeckScreen extends Component {
             style={ styles.image }
             source={{ uri: idea.imageURL }}
           />
-        </View>
-
-        <View>
+          <View>
           <Text style={ styles.title3 }>{ idea.title }</Text>
           <Text style={ styles.body }>{ idea.description }</Text>
+          </View>
         </View>
+
 
       </Card>
     );
@@ -45,17 +48,33 @@ class DeckScreen extends Component {
 
   renderNoMoreCards = () => {
     return (
-      <Card title="No Ideas Left...">
-        <Button
-          title="Review yours"
-          large
-          icon={{ name: 'my-location' }}
-          backgroundColor="#03A9F4"
-          onPress={() => this.props.navigation.navigate('mallets')}
+
+      <Card style={{ height: SCREEN_HEIGHT }}>
+        <Image
+          style={ styles.image }
+          source={{ uri: 'http://3.bp.blogspot.com/-yoHsg6Qe4s8/TbaiLfeDOCI/AAAAAAAAACM/jIt9Pe-KlcM/s1600/empty.png' }}
         />
+        <View>
+          <Button
+            title="my mallets"
+            large
+            icon={{ name: 'assignment-ind' }}
+            backgroundColor="#03A9F4"
+            onPress={() => this.props.navigation.navigate('mallets')}
+          />
+          <Button
+            title="add a mallet"
+            large
+            icon={{ name: 'plus-one' }}
+            backgroundColor="#03A9F4"
+            onPress={() => this.props.navigation.navigate('new')}
+          />
+        </View>
       </Card>
     );
   }
+
+
 
   render() {
     return (

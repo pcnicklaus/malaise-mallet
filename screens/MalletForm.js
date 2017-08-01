@@ -11,36 +11,34 @@ const Form = t.form.Form;
 const validate = t.validate;
 
 
-class ReviewForm extends Component {
+class MalletForm extends Component {
 
   state = { value: {} }
 
-  yesNoMaybe = t.enums({ Y: 'Yes', N: 'No', M: 'Maybe'});
-
-  Review = t.struct({
-    name: t.String,
+  Mallet = t.struct({
     title: t.String,
-    body: t.String,
-    recommendations: t.maybe(t.String),
-    gotchas: t.maybe(t.String),
-    willDoAgain: t.maybe(this.yesNoMaybe),
-    recommended: t.maybe(this.yesNoMaybe)
+    imageURL: t.String,
+    description: t.String,  
+    requirements: t.maybe(t.String),
+    time_needed: t.maybe(t.String),
+    best_time: t.maybe(t.String),
+    best_location: t.maybe(t.String),
   });
 
   onChange = (value) => { this.setState({ value }); }
   clearForm = () => { this.setState({ value: null }); }
 
   handleSubmit = (result) => {
-    const id = this.props.idea._id;
-    axios.post(`http://localhost:3050/idea/${id}/review`, result)
-      .then((review) => {
+    console.log('result \n', result)
+    axios.post(`http://localhost:3050/idea`, result)
+      .then((mallet) => {
         this.clearForm();
         Alert.alert(
-          'Thanks soooooo much for your review!!!\n',
+          'What? What?!? j/k THANKS!!!!\n',
           'Seriously, without people like you, we\'d be absolutely nowhere! Which, if you want to be precise, is technically where we are but we\'re working toward\' something here man and that can\'t be rushed!! Or it could but we just don\'t know how... Regardless, this is about you and not us so again, Thanks a bunch!!!',
           [{ text: 'OK', onPress: () => console.log('OK Pressed!') }]
         );
-        this.props.navigation.navigate('detail');
+        this.props.navigation.navigate('mallets');
       })
       .catch( err => {
         Alert.alert(
@@ -53,7 +51,7 @@ class ReviewForm extends Component {
 
   onPress = () => {
     let value = this.refs.form.getValue();
-    let result = validate(value, this.Review)
+    let result = validate(value, this.Mallet)
 
     if (result.isValid()) {
       this.handleSubmit(result)
@@ -71,13 +69,12 @@ class ReviewForm extends Component {
     const { navigation } = this.props;
     return (
       <View style={ localStyles.container }>
-        <BackButton navigation={navigation} destination={'detail'}/>
-        <Text style={Styles.title}>{this.props.idea.title}</Text>
-        <Text style={Styles.subhead}>Review away! And be straight with us :)</Text>
+        <BackButton navigation={navigation} destination={'mallets'}/>
+        <Text style={Styles.title}>New Mallet</Text>
 
         <Form
           ref="form"
-          type={this.Review}
+          type={this.Mallet}
           options={{ auto: 'placeholders' }}
           value={this.state.value}
           onChange={ this.onChange }
@@ -105,7 +102,7 @@ const localStyles = {
   },
 }
 
-export default connect(mapStateToProps, null)(ReviewForm)
+export default connect(mapStateToProps, null)(MalletForm)
 
 
 

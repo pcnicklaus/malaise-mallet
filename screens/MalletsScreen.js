@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { MapView } from 'expo';
 import { activeIdea } from '../actions';
 
+import Styles from '../styles';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../shared';
 
 class MalletsScreen extends Component {
   static navigationOptions = {
@@ -23,22 +25,33 @@ class MalletsScreen extends Component {
     return this.props.likedIdeas.map(idea => {
       // console.log('idea in review screen', idea)
       const {
-        _id, title, description, requirements, best_time, best_location, reviews
+        _id, title, description, requirements, best_time, best_location, time_needed, reviews
       } = idea;
 
       return (
         <Card title={title} key={_id}>
           <View style={{ height: 200 }} scrollEnabled={false}>
-            <View style={styles.detailWrapper}>
-              <Text>{ _id } </Text>
-              <Text style={styles.italics}>{title}</Text>
-              <Text>{description}</Text>
-              <Text>{best_location}</Text>
-              <Text>{best_time}</Text>
-              <Text>{ _id } </Text>
+            <View style={ styles.row }>
+              <Text style={ styles.question }>Where:</Text>
+              <Text style={ styles.content }>{ best_location }</Text>
             </View>
+            <View style={ styles.row }>
+              <Text style={ styles.question }>When:</Text>
+              <Text style={ styles.content }>{ best_time }</Text>
+            </View>
+            <View style={ styles.row }>
+              <Text style={ styles.question }>Time Needed:</Text>
+              <Text style={ styles.content }>{ time_needed }</Text>
+            </View>
+            <View style={ styles.row }>
+              <Text style={ styles.question }>Requirements:</Text>
+              <Text numberOfLines={ 2 } style={ styles.content }>{ requirements }</Text>
+            </View>
+
             <Button
-              title="screw off?!"
+              style={{height: 50}}
+              title="more info"
+              icon={{ name: 'pageview'}}
               backgroundColor="#03A9F4"
               onPress={() => {
                 this.props.activeIdea(idea);
@@ -70,14 +83,29 @@ class MalletsScreen extends Component {
     // console.log('this props review screen', this.props)
     // console.log('this state review screen', this.state)
     return (
-      <ScrollView>
+      <ScrollView style={{ marginTop: 10 }}>
         {this.renderLikedIdeas()}
       </ScrollView>
     );
   }
 }
+ // justifyContent: 'center', alignItems: 'center'
 
 const styles = {
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+
+  },
+  question: {
+    width: SCREEN_WIDTH / 3,
+    textAlign: 'right',
+    marginRight: 10,
+  },
+  content: {
+    width: (SCREEN_WIDTH / 4) * 3,
+    paddingRight: 25,
+  },
   italics: {
     fontStyle: 'italic'
   },
@@ -95,6 +123,10 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { activeIdea })(MalletsScreen);
+
+// <View style={styles.detailWrapper}>
+//   <Text>What: {description}</Text>
+// </View>
 
 //
 // header: ({ navigate }) => {
