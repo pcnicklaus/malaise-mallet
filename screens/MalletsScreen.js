@@ -109,12 +109,12 @@ const styles = {
   italics: {
     fontStyle: 'italic'
   },
-  detailWrapper: {
-    marginTop: 10,
-    marginBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  }
+  // detailWrapper: {
+  //   marginTop: 10,
+  //   marginBottom: 10,
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-around'
+  // }
 }
 
 function mapStateToProps(state) {
