@@ -5,9 +5,7 @@ import CardMedia from 'react-native-card-media';
 
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../shared';
 
-const files1 = [
-  `https://blog.vandalog.com/wp-content/uploads/2015/11/al-640x480.jpg`,
-]
+const files1 = [`https://blog.vandalog.com/wp-content/uploads/2015/11/al-640x480.jpg`];
 
 /*
 1) files - Array of images
@@ -15,36 +13,45 @@ const files1 = [
   - first card, all image, little bit of text
   - card detail, smaller images, more text
 3) Content/body
-
 */
 
-export default class CardExample extends Component {
+class CardComponent extends Component {
 
+  onPress() {
+    console.log('on Press');
+  }
 
   render () {
     return (
       <ScrollView>
-
         <View style={ styles.scene }>
             <ScrollView>
-              <View style={ styles.container }>
 
-                <Card style={ styles.cardStyle }>
-                  <CardMedia
-                    style={ styles.cardMedia }
-                    title="Title"
-                    titleStyle={{ fontSize: 24, fontWeight: '400', lineHeight: 32, color: '#fafafa' }}
-                    files={files1}
-                    onPress={() => this.onPress()}
-                  />
-                  <Card.Body>
-                    <Text>
-                      Multiple image component for React Native
-                    </Text>
-                  </Card.Body>
-                </Card>
+
+              <View style={{ backgroundColor: '#F5FCFF' }}>
+
+                <View style={{flex: 1}}>
+                { this.props.renderBack() }
+                </View>
+
+                <View style={ styles.container }>
+
+                  <Card style={ styles.cardStyle }>
+                    <CardMedia
+                      style={{ height: this.props.imageHeight }}
+                      title={ this.props.idea.title }
+                      titleStyle={{ fontSize: 24, fontWeight: '400', lineHeight: 32, color: '#fafafa' }}
+                      files={ files1 }
+                    />
+                    <Card.Body>
+                      { this.props.renderBody() }
+                    </Card.Body>
+                  </Card>
+
+                </View>
 
               </View>
+
             </ScrollView>
           </View>
 
@@ -52,6 +59,7 @@ export default class CardExample extends Component {
     );
   }
 }
+
 
 
 const styles = StyleSheet.create({
@@ -67,7 +75,10 @@ const styles = StyleSheet.create({
   cardStyle: {
     width: SCREEN_WIDTH,
   },
-  cardMedia: {
-    height: 3 * (SCREEN_HEIGHT / 4),
-  }
+  // this.props.css.cardMedia...
+  // cardMedia: {
+  //   height: this.props.imageHeight,
+  // }
 });
+
+export default CardComponent;

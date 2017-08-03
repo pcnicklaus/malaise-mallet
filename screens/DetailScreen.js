@@ -1,21 +1,69 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, View, Text, Image, Dimensions, TouchableHighlight } from 'react-native';
-import { Button, Card, Icon } from 'react-native-elements';
+import { Button, Card, Icon, Grid, Row, Col, Divider } from 'react-native-elements';
 
 import BackButton from '../components/BackButton';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../shared';
+import { SCREEN_HEIGHT, SCREEN_WIDTH, IMAGE_HEIGHT_3FOURTHS } from '../shared';
 import Styles from '../styles';
-import CardExample from '../components/Card';
+import CardComponent from '../components/Card'
 
 class DetailScreen extends Component {
 
   componentWillMount(props) {
   }
 
+  renderButton = () => {
+    return (
+      <TouchableHighlight
+      onPress={ () => this.props.navigation.navigate('mallets') }
+      >
+        <Text style={ localStyles.button }>back</Text>
+      </TouchableHighlight>
+    )
+  }
+
+  renderBody = () => {
+    const { title, requirements, time_needed, best_time, best_location, description, reviews, imageURL } = this.props.idea;
+
+    return (
+      <View>
+        <Text>{ description }</Text>
+        <Divider style={ localStyles.divider } />
+        <Grid>
+          <Row size={1}>
+            <Col size={25}><Text>You need:</Text></Col>
+            <Col size={70}><Text style={{ marginBottom: 5 }}>{ requirements }</Text></Col>
+          </Row>
+          <Row size={1}>
+            <Col size={25}><Text>Best time:</Text></Col>
+            <Col size={70}><Text style={{ marginBottom: 5 }}>{ best_time }</Text></Col>
+          </Row>
+          <Row size={1}>
+            <Col size={25}><Text>How Long:</Text></Col>
+            <Col size={70}><Text style={{ marginBottom: 5 }}>{ time_needed }</Text></Col>
+          </Row>
+          <Row size={1}>
+            <Col size={25}><Text>Where:</Text></Col>
+            <Col size={70}><Text>{ best_location }</Text></Col>
+          </Row>
+        </Grid>
+        <Divider style={ localStyles.divider } />
+        <Button
+          icon={{ name: 'announcement'}}
+          style={{ margin: 10 }}
+          title="review it"
+          backgroundColor="#f27c15"
+          onPress={ () => { this.props.navigation.navigate('review') } }
+        />
+      </View>
+    )
+  }
+
   render() {
+
     return(
-      <CardExample />
+      <CardComponent idea={ this.props.idea } renderBody={ this.renderBody } title={ this.props.title } imageHeight={ IMAGE_HEIGHT_3FOURTHS } renderBack={ this.renderButton }/>
     )
   }
 }
@@ -41,10 +89,18 @@ const localStyles = {
     textAlign: 'left',
     fontSize: 18,
     paddingLeft: 5,
-    paddingBottom: 10
+    // paddingTop: 25,
+    // paddingBottom: 15
   },
   cardContainer: {
     margin: 0
+  },
+  divider: {
+    marginTop: 15,
+    marginBottom: 15,
+    marginRight: 40,
+    marginLeft: 40,
+    backgroundColor: 'gray'
   }
 }
 
