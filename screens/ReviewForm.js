@@ -21,11 +21,20 @@ class ReviewForm extends Component {
     name: t.String,
     title: t.String,
     body: t.String,
-    recommendations: t.maybe(t.String),
-    gotchas: t.maybe(t.String),
-    willDoAgain: t.maybe(this.yesNoMaybe),
-    recommended: t.maybe(this.yesNoMaybe)
+    gotchas: t.String,
+    recommended: t.Boolean,
+    willDoAgain: t.Boolean,
   });
+
+  options = {
+    fields: {
+      name: { placeholder: 'Simba Lion', label: 'Your name' },
+      title: { placeholder: 'Waterhole rules!!', label: 'Title your review' },
+      body: { placeholder: 'so we roll up at 5, and the place is empty so we can get a good table.', label: 'Tell us all about it!'},
+      recommended: { label: 'Recommended?' },
+      gotchas: { label: 'Any tips, gotchas or thoughts?', placeholder: "Don't trust warthogs. Just don't."}
+    }
+  }
 
   onChange = (value) => { this.setState({ value }); }
   clearForm = () => { this.setState({ value: null }); }
@@ -71,14 +80,21 @@ class ReviewForm extends Component {
     const { navigation } = this.props;
     return (
       <View style={ localStyles.container }>
-        <BackButton navigation={navigation} destination={'detail'}/>
-        <Text style={Styles.title}>{this.props.idea.title}</Text>
-        <Text style={Styles.subhead}>Review away! And be straight with us :)</Text>
+        <BackButton navigation={navigation} destination={'detail'} />
+
+        <Text style={{ fontSize: 18, paddingLeft: 10 }}>
+          this is
+          <Text style={{ fontSize: 40, paddingLeft:15, paddingRight:15 }}>
+            your review
+          </Text>
+          of ...
+        </Text>
+        <Text style={Styles.callout, { textAlign: 'center' }}>{this.props.idea.title}</Text>
 
         <Form
           ref="form"
           type={this.Review}
-          options={{ auto: 'placeholders' }}
+          options={this.options}
           value={this.state.value}
           onChange={ this.onChange }
         />

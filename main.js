@@ -10,7 +10,6 @@ import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import DetailScreen from './screens/DetailScreen';
 import DeckScreen from './screens/DeckScreen';
-import SettingsScreen from './screens/SettingsScreen';
 import MalletsScreen from './screens/MalletsScreen';
 import ReviewForm from './screens/ReviewForm';
 import MalletForm from './screens/MalletForm';
@@ -41,7 +40,6 @@ class App extends React.Component {
         screen: TabNavigator({
           deck: { screen: DeckScreen },
           mallets: { screen: MalletsScreen },
-          settings: { screen: SettingsScreen },
         })
       },
       detail: { screen: DetailScreen },
@@ -62,20 +60,6 @@ class App extends React.Component {
     );
   }
 }
-
-
-// const ReviewNav = TabNavigator({
-//     detail: { screen: DetailScreen },
-//     settings: { screen: SettingsScreen },
-//     reviewForm: { screen: ReviewForm }
-//   },
-//   {
-//     navigationOptions: {
-//       tabBar: { visible: false }
-//     }
-//   }
-// )
-
 
 const styles = StyleSheet.create({
   container: {

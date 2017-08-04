@@ -19,7 +19,7 @@ const files1 = [
 
 class DeckScreen extends Component {
   static navigationOptions = {
-    title: 'Ideas',
+    title: 'Swipe em',
     tabBar: {
       icon: ({ tintColor }) => {
         return <Icon name="description" size={30} color={tintColor} />;
@@ -97,7 +97,7 @@ class DeckScreen extends Component {
 
   render() {
     return (
-      <View style={{ marginTop: 10 }}>
+      <View style={{ marginTop: 30 }}>
         <Swipe
           data={this.props.ideas}
           renderCard={this.renderCard}

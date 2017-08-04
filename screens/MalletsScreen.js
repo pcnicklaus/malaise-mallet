@@ -12,7 +12,7 @@ import NoMoreCards from '../components/NoMoreCards';
 
 class MalletsScreen extends Component {
   static navigationOptions = {
-    title: 'Review Ideas',
+    title: 'Your Mallets',
     tabBar: {
       icon: ({ tintColor }) => {
         return <Icon name="favorite" size={30} color={tintColor} />;
@@ -85,7 +85,7 @@ class MalletsScreen extends Component {
   render() {
     if(this.props.likedIdeas.length == 0) {
       return(
-        <View style={styles.scene}>
+        <View style={{ marginTop: 20 }}>
             <View style={styles.container}>
               <Card style={styles.cardStyle}>
                 <CardMedia
@@ -131,10 +131,13 @@ class MalletsScreen extends Component {
  // justifyContent: 'center', alignItems: 'center'
 
 const styles = {
+  scene: {
+    height: SCREEN_HEIGHT,
+    marginTop: 20
+  },
   row: {
     flex: 1,
     flexDirection: 'row',
-
   },
   question: {
     width: SCREEN_WIDTH / 3,
