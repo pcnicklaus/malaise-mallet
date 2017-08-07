@@ -18,12 +18,11 @@ const files1 = [
 ]
 
 class DeckScreen extends Component {
+
   static navigationOptions = {
     title: 'Swipe em',
-    tabBar: {
-      icon: ({ tintColor }) => {
+    tabBarIcon: ({ tintColor }) => {
         return <Icon name="description" size={30} color={tintColor} />;
-      }
     }
   }
 

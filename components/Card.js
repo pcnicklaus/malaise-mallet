@@ -13,6 +13,7 @@ const files1 = [`https://blog.vandalog.com/wp-content/uploads/2015/11/al-640x480
   - first card, all image, little bit of text
   - card detail, smaller images, more text
 3) Content/body
+style={{ backgroundColor: '#F5FCFF' }}
 */
 
 class CardComponent extends Component {
@@ -28,7 +29,7 @@ class CardComponent extends Component {
             <ScrollView>
 
 
-              <View style={{ backgroundColor: '#F5FCFF' }}>
+              <View>
 
                 <View style={{flex: 1}}>
                 { this.props.renderBack() }
@@ -69,8 +70,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center'
   },
   cardStyle: {
     width: SCREEN_WIDTH,

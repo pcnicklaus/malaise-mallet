@@ -15,7 +15,9 @@ import ReviewForm from './screens/ReviewForm';
 import MalletForm from './screens/MalletForm';
 
 class App extends React.Component {
+
   componentDidMount() {
+
     registerForNotifications();
     Notifications.addListener((notification) => {
       const { data: { text }, origin } = notification;
@@ -55,7 +57,7 @@ class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <MainNavigator />
+        <MainNavigator styles={ styles.container }/>
       </Provider>
     );
   }
@@ -65,8 +67,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
 

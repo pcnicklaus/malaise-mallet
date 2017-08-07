@@ -11,13 +11,12 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH, IMAGE_HEIGHT_3FOURTHS } from '../shared';
 import NoMoreCards from '../components/NoMoreCards';
 
 class MalletsScreen extends Component {
+
   static navigationOptions = {
     title: 'Your Mallets',
-    tabBar: {
-      icon: ({ tintColor }) => {
-        return <Icon name="favorite" size={30} color={tintColor} />;
-      }
-    },
+    tabBarIcon: ({ tintColor }) => {
+        return <Icon name="gavel" size={30} color={tintColor} />;
+    }
   }
 
   onPress = (idea) => {
@@ -26,15 +25,16 @@ class MalletsScreen extends Component {
   }
 
   renderBody = (requirements, best_time, best_location, time_needed) => {
+    if (!requirements) { return <View></View> }
     return (
       <Grid style={{ marginBottom: 10 }}>
         <Row size={1}>
           <Col size={25}><Text>Best time:</Text></Col>
-          <Col size={70}><Text style={{ marginBottom: 5 }}>{ best_time }</Text></Col>
+          <Col size={70}><Text style={{ marginBottom: 5 }}> best_time </Text></Col>
         </Row>
         <Row size={1}>
           <Col size={25}><Text>How Long:</Text></Col>
-          <Col size={70}><Text style={{ marginBottom: 5 }}>{ time_needed }</Text></Col>
+          <Col size={70}><Text style={{ marginBottom: 5 }}>time_needed</Text></Col>
         </Row>
         <Row size={1}>
           <Col size={25}><Text>Where:</Text></Col>
@@ -46,6 +46,7 @@ class MalletsScreen extends Component {
 
   renderLikedIdeas() {
     // console.log('this.props', this.props);
+    // if (!this.props.likedIdeas) { return <View></View>}
 
     return this.props.likedIdeas.map(idea => {
       // console.log('idea in review screen', idea)
@@ -67,7 +68,7 @@ class MalletsScreen extends Component {
                  <Card.Body>
                    { this.renderBody(description, best_time, best_location, time_needed) }
                    <Button
-                     style={{height: 30, marginTop: 15}}
+                     style={{height: 30, marginBottom: 15}}
                      title="more info"
                      icon={{ name: 'pageview'}}
                      backgroundColor="#03A9F4"
@@ -86,8 +87,8 @@ class MalletsScreen extends Component {
     if(this.props.likedIdeas.length == 0) {
       return(
         <View style={{ marginTop: 20 }}>
-            <View style={styles.container}>
-              <Card style={styles.cardStyle}>
+            <View>
+              <Card>
                 <CardMedia
                   style={{ height: IMAGE_HEIGHT_3FOURTHS }}
                   title={"all outta mallets! \n maybe do one :)"}
@@ -139,24 +140,11 @@ const styles = {
     flex: 1,
     flexDirection: 'row',
   },
-  question: {
-    width: SCREEN_WIDTH / 3,
-    textAlign: 'right',
-    marginRight: 10,
-  },
-  content: {
-    width: (SCREEN_WIDTH / 4) * 3,
-    paddingRight: 25,
-  },
-  italics: {
-    fontStyle: 'italic'
-  },
-  detailWrapper: {
-    marginTop: 10,
-    marginBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+  container: {
+    backgroundColor: 'red',
   }
+
+
 }
 
 function mapStateToProps(state) {

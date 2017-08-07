@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Divider } from 'react-native-elements';
 import { View, Text, StyleSheet, TouchableHighlight, Alert, Button } from 'react-native';
 import BackButton from '../components/BackButton.js';
 import Styles from '../styles';
@@ -89,8 +90,9 @@ class ReviewForm extends Component {
           </Text>
           of ...
         </Text>
-        <Text style={Styles.callout, { textAlign: 'center' }}>{this.props.idea.title}</Text>
+        <Text style={Styles.callout, { textAlign: 'center', marginBottom: 10, }}>{this.props.idea.title}</Text>
 
+        <Divider styles={ localStyles.divider } />
         <Form
           ref="form"
           type={this.Review}
@@ -119,6 +121,13 @@ const localStyles = {
     padding: 10,
     marginTop: 20,
   },
+  divider: {
+    marginTop: 15,
+    marginBottom: 15,
+    marginRight: 40,
+    marginLeft: 40,
+    backgroundColor: 'gray'
+  }
 }
 
 export default connect(mapStateToProps, null)(ReviewForm)
