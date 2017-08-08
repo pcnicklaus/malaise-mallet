@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { ScrollView, View, Text, StyleSheet, TouchableHighlight, Alert, Button } from 'react-native';
+import { Divider } from 'react-native-elements';
 import BackButton from '../components/BackButton.js';
 import Styles from '../styles';
 
@@ -83,7 +84,13 @@ class MalletForm extends Component {
       <ScrollView style={ localStyles.scrollview }>
         <BackButton navigation={navigation} destination={'mallets'} style={{marginTop: 30, marginLeft: 20}}/>
         <View style={ localStyles.container }>
-          <Text style={localStyles.title}>New Mallet</Text>
+          <Text style={{ fontSize: 18, paddingLeft: 10 }}>
+            thanks for creating a
+          </Text>
+          <Text style={{ fontSize: 40, paddingLeft:100 }}>
+            New Mallet
+          </Text>
+          <Divider style={ Styles.divider, { marginLeft: 60, marginRight: 60, marginTop: 10, marginBottom: 15 } }/>
 
           <Form
             ref="form"
@@ -137,7 +144,7 @@ var localStyles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
-  }
+  },
 });
 
 export default connect(mapStateToProps, null)(MalletForm)

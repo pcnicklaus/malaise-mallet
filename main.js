@@ -42,7 +42,15 @@ class App extends React.Component {
         screen: TabNavigator({
           deck: { screen: DeckScreen },
           mallets: { screen: MalletsScreen },
-        })
+        },
+        {
+          tabBarPosition: 'bottom',
+          tabBarOptions: {
+            labelStyle: { fontSize: 12 }
+          }
+        }
+      ),
+
       },
       detail: { screen: DetailScreen },
       review: { screen: ReviewForm },

@@ -24,17 +24,17 @@ class MalletsScreen extends Component {
     this.props.navigation.navigate('detail')
   }
 
-  renderBody = (requirements, best_time, best_location, time_needed) => {
-    if (!requirements) { return <View></View> }
+  renderBody = (best_time, best_location, time_needed) => {
+
     return (
       <Grid style={{ marginBottom: 10 }}>
         <Row size={1}>
           <Col size={25}><Text>Best time:</Text></Col>
-          <Col size={70}><Text style={{ marginBottom: 5 }}> best_time </Text></Col>
+          <Col size={70}><Text style={{ marginBottom: 5 }}>{ best_time }</Text></Col>
         </Row>
         <Row size={1}>
           <Col size={25}><Text>How Long:</Text></Col>
-          <Col size={70}><Text style={{ marginBottom: 5 }}>time_needed</Text></Col>
+          <Col size={70}><Text style={{ marginBottom: 5 }}>{ time_needed }</Text></Col>
         </Row>
         <Row size={1}>
           <Col size={25}><Text>Where:</Text></Col>
@@ -49,7 +49,7 @@ class MalletsScreen extends Component {
     // if (!this.props.likedIdeas) { return <View></View>}
 
     return this.props.likedIdeas.map(idea => {
-      // console.log('idea in review screen', idea)
+      console.log('idea in review screen', idea)
       const { _id, title, description, requirements, best_time, best_location, time_needed } = idea;
 
       return (
@@ -66,7 +66,7 @@ class MalletsScreen extends Component {
                    onPress={ () => this.onPress(idea) }
                  />
                  <Card.Body>
-                   { this.renderBody(description, best_time, best_location, time_needed) }
+                   { this.renderBody(best_time, best_location, time_needed) }
                    <Button
                      style={{height: 30, marginBottom: 15}}
                      title="more info"
@@ -108,7 +108,7 @@ class MalletsScreen extends Component {
                     title="add a mallet"
                     large
                     icon={{ name: 'plus-one' }}
-                    backgroundColor="#03A9F4"
+                    backgroundColor="#FF8700"
                     onPress={() => this.props.navigation.navigate('new')}
                   />
                 </Card.Body>
@@ -139,12 +139,7 @@ const styles = {
   row: {
     flex: 1,
     flexDirection: 'row',
-  },
-  container: {
-    backgroundColor: 'red',
   }
-
-
 }
 
 function mapStateToProps(state) {

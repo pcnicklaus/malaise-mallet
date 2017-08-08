@@ -92,7 +92,7 @@ class ReviewForm extends Component {
         </Text>
         <Text style={Styles.callout, { textAlign: 'center', marginBottom: 10, }}>{this.props.idea.title}</Text>
 
-        <Divider styles={ localStyles.divider } />
+        <Divider styles={ Styles.divider } />
         <Form
           ref="form"
           type={this.Review}
@@ -120,13 +120,6 @@ const localStyles = {
     backgroundColor: '#ffffff',
     padding: 10,
     marginTop: 20,
-  },
-  divider: {
-    marginTop: 15,
-    marginBottom: 15,
-    marginRight: 40,
-    marginLeft: 40,
-    backgroundColor: 'gray'
   }
 }
 

@@ -100,6 +100,13 @@ export default StyleSheet.create({
   },
 
 
+  divider: {
+    marginTop: 15,
+    marginBottom: 15,
+    marginRight: 40,
+    marginLeft: 40,
+    backgroundColor: 'gray'
+  }
 
 
 
